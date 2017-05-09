@@ -11,5 +11,15 @@ namespace CheeseMVC.Data
             : base(options)
         { }
 
+        public DbSet<CheeseCategory> Categories { get; set; }
+        public DbSet<CheeseMenu> CheeseMenus { get; set; }
+        public DbSet<Menu> Menus { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            modelbuilder.Entity<CheeseMenu>()
+                .HasKey(c => new { c.CheeseID, c.MenuID });
+        }
+
     }
 }
